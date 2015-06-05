@@ -1,0 +1,26 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+	<a class="btn btn-primary pull-right" href="/create">New Post</a>
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			{% for post in posts %}
+			<form method='POST' action='/{{post.post_id}}/delete' class='pull-right'>
+				<a href="/{{post.post_id}}/edit">Edit</a>
+				<button class="btn btn-default">&times;</button>
+			</form>
+			<h1>{{ post.title }}</h1>
+			{{ post.text }}
+			<p>
+			<a class="btn btn-primary" href="/{{ post.post_id }}">
+				View Post
+			</a>
+			</p>
+			<hr>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+{% endblock %}

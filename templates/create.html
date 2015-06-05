@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+<div class="row">
+<div class="col-md-8 col-md-offset-2">
+<form method='POST' action='/save'>
+{{ form.post_id() }}
+<div class="form-group">
+    {{ form.title.label }} {{ form.title(maxlength="100", class="form-control", autofocus=true) }}
+</div>
+<div class="form-group">
+    {{ form.text.label }} {{ form.text(class="form-control") }}
+</div>
+<div class="form-group">
+    <button class="btn btn-primary">Add Post</button>
+    <a href="/" class="btn btn-link">Cancel</a>
+</div>
+</form>
+</div>
+</div>
+</div>
+{% endblock %}

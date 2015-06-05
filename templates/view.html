@@ -1,0 +1,37 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<h1>{{ post.title }}</h1>
+			{{ post.text }}
+		</div>
+		<div class="col-md-8 col-md-offset-2">
+			{% for comment in post.comments %}
+				<div class="panel panel-default">
+					<h4>{{ comment.author }}</h4>
+					<p>{{ comment.text }}</p>
+				</div>
+			{% endfor %}
+		</div>
+		<div class="col-md-8 col-md-offset-2">
+			<h2 class='page-header'>Comment Form</h2>
+			<form method='POST' action='/{{post.post_id}}/comments'>
+				<input type="hidden" name="post_id" value="{{ post.post_id }}"/>
+				<div class="form-group">
+					{{ comment_form.author.label }} {{ comment_form.author(maxlength="100", class="form-control", autofocus=true) }}
+				</div>
+				<div class="form-group">
+					{{ comment_form.text.label }} {{ comment_form.text(class="form-control") }}
+				</div>
+				<div class="form-group">
+					<button class="btn btn-primary">Add Post</button>
+					<a href="/{{post.id}}" class="btn btn-link">Cancel</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
